@@ -1,0 +1,117 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  VIEWER
+}
+
+model User {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  name        String?
+  role        Role     @default(VIEWER)
+  firebaseUid String?  @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id                 String   @id @default(uuid())
+  title              String
+  tagline            String?
+  description        String
+  techStack          String[]
+  features           String[]
+  githubUrl          String?
+  demoUrl            String?
+  imageUrl           String?
+  cloudinaryPublicId String?
+  isFeatured         Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Skill {
+  id          String   @id @default(uuid())
+  name        String
+  category    String   // e.g. "Languages", "Flutter", "Backend", "State Management", "Databases", "Tools"
+  iconUrl     String?
+  proficiency String? // e.g. "Advanced", "Intermediate"
+  createdAt   DateTime @default(now())
+}
+
+model Experience {
+  id               String   @id @default(uuid())
+  role             String
+  company          String
+  location         String?
+  startDate        String
+  endDate          String?
+  responsibilities String[]
+  technologies     String[]
+  impact           String?
+  createdAt        DateTime @default(now())
+}
+
+model Education {
+  id              String   @id @default(uuid())
+  degree          String
+  institution     String
+  timeline        String
+  relevantCourses String[]
+  createdAt       DateTime @default(now())
+}
+
+model Certification {
+  id            String   @id @default(uuid())
+  title         String
+  issuer        String
+  issueDate     String?
+  credentialUrl String?
+  createdAt     DateTime @default(now())
+}
+
+model Achievement {
+  id          String   @id @default(uuid())
+  title       String
+  category    String
+  description String
+  year        String?
+  createdAt   DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  client    String
+  company   String?
+  text      String
+  rating    Int      @default(5)
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model MediaAsset {
+  id        String   @id @default(uuid())
+  url       String
+  publicId  String   @unique
+  assetType String   // e.g. "project", "profile", "certificate"
+  filename  String?
+  size      Int?
+  createdAt DateTime @default(now())
+}

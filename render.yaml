@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: sifat-portfolio-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: "*"
+      - key: PORT
+        value: 10000

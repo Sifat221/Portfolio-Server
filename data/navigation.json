@@ -1,0 +1,11 @@
+[
+  { "label": "Home", "sectionId": "hero" },
+  { "label": "About", "sectionId": "about" },
+  { "label": "Skills", "sectionId": "skills" },
+  { "label": "Experience", "sectionId": "experience" },
+  { "label": "Projects", "sectionId": "projects" },
+  { "label": "Education", "sectionId": "education" },
+  { "label": "Certificates", "sectionId": "certificates" },
+  { "label": "Achievements", "sectionId": "achievements" },
+  { "label": "Contact", "sectionId": "contact" }
+]

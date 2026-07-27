@@ -1,0 +1,44 @@
+[
+  {
+    "company": "PetPassion App",
+    "role": "Android Developer (Individual Project)",
+    "location": "Mirpur, Dhaka, Bangladesh",
+    "startDate": "2023",
+    "endDate": "Present",
+    "responsibilities": [
+      "Developed a full-featured e-commerce app for pet lovers using Android Studio, Java, and Firebase.",
+      "Implemented product browsing, cart management, profile management, and secure authentication.",
+      "Focused on creating a scalable and user-friendly mobile application interface."
+    ],
+    "technologies": ["Android Studio", "Java", "Firebase", "Git"],
+    "impact": "Full-featured e-commerce platform built for pet care enthusiasts."
+  },
+  {
+    "company": "House Rental App",
+    "role": "Android Developer (Team Project)",
+    "location": "Mirpur, Dhaka, Bangladesh",
+    "startDate": "2023",
+    "endDate": "2024",
+    "responsibilities": [
+      "Developed an app to manage sales, products, stock, and due payments using Flutter, API, and Firebase.",
+      "Implemented real-time notifications, sales tracking, and data visualization.",
+      "Focused on team collaboration, OOP concepts, and project scalability."
+    ],
+    "technologies": ["Flutter", "REST API", "Firebase", "Dart"],
+    "impact": "Streamlined property and transaction management with real-time analytics."
+  },
+  {
+    "company": "Shop Management App",
+    "role": "Flutter Developer (Group Project)",
+    "location": "Mirpur, Dhaka, Bangladesh",
+    "startDate": "2023",
+    "endDate": "2024",
+    "responsibilities": [
+      "Developed an app to manage sales, products, stock, and due payments using Flutter, API, and Firebase.",
+      "Implemented real-time notifications, sales tracking, and data visualization.",
+      "Focused on team collaboration, OOP concepts, and project scalability."
+    ],
+    "technologies": ["Flutter", "REST API", "Firebase", "Dart"],
+    "impact": "Enhanced shop inventory management and automated sales reporting."
+  }
+]

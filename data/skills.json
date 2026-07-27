@@ -1,0 +1,10 @@
+{
+  "languages": ["Dart", "Java", "Kotlin", "OOP"],
+  "flutter": ["Flutter SDK", "Clean UI", "Responsive Design", "Clean Architecture", "Custom Widgets"],
+  "backend": ["RESTful API Integration", "Firebase"],
+  "stateManagement": ["Provider", "GetX"],
+  "databases": ["Firebase Realtime DB", "Cloud Firestore", "SQLite / Shared Preferences"],
+  "tools": ["Postman", "Git", "GitHub", "Android Studio", "Figma"],
+  "design": ["Clean UI", "Responsive Mobile Layouts", "Dark / Light Themes"],
+  "softSkills": ["Team Collaboration", "Problem Solving", "Detail-Oriented", "Project Scalability"]
+}

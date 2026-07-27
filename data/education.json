@@ -1,0 +1,24 @@
+[
+  {
+    "degree": "B.Sc. in Computer Science and Engineering",
+    "institution": "Daffodil International University",
+    "timeline": "01/2022 - 12/2025",
+    "relevantCourses": [
+      "Object Oriented Programming (Java/Dart)",
+      "Data Structures & Algorithms",
+      "Software Engineering & Clean Architecture",
+      "Database Systems",
+      "Mobile Application Development (Flutter)"
+    ],
+    "projects": ["MedBridge Telemedicine App", "Shop Management App", "Virtual Care"],
+    "activities": ["Mobile App Development Projects", "Software Engineering Labs"]
+  },
+  {
+    "degree": "Higher Secondary Certification (HSC)",
+    "institution": "Ibrahim Khan Govt. College",
+    "timeline": "Completed",
+    "relevantCourses": ["Science Stream", "Physics", "Chemistry", "Higher Mathematics"],
+    "projects": [],
+    "activities": []
+  }
+]

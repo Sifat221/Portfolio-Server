@@ -1,0 +1,20 @@
+{
+  "metaTitle": "Sifat Khan — Flutter Developer Portfolio",
+  "metaDescription": "Official portfolio of Sifat Khan, a detail-oriented Flutter Developer based in Mirpur, Dhaka, Bangladesh. Building beautiful, fast, and scalable cross-platform mobile applications with GetX, Provider, and REST APIs.",
+  "keywords": [
+    "Sifat Khan",
+    "Flutter Developer",
+    "Android Developer",
+    "Dhaka Bangladesh Developer",
+    "GetX",
+    "Provider",
+    "Daffodil International University",
+    "MedBridge Telemedicine",
+    "Virtual Care"
+  ],
+  "openGraph": {
+    "title": "Sifat Khan — Flutter Developer Portfolio",
+    "type": "website",
+    "url": "https://sifat221.github.io/SifatKhan-portfolio/"
+  }
+}

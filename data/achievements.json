@@ -1,0 +1,14 @@
+[
+  {
+    "title": "National Hackathon Finalist",
+    "category": "Hackathons",
+    "year": "2024",
+    "description": "Developed a Flutter-based telehealth emergency routing app under 36 hours."
+  },
+  {
+    "title": "Open Source Contributor",
+    "category": "Open Source",
+    "year": "2023 - Present",
+    "description": "Contributed bug fixes and UI widgets to popular Flutter open source repositories."
+  }
+]

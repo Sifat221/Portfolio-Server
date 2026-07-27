@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env
+
+# Prisma
+prisma/migrations/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+build/

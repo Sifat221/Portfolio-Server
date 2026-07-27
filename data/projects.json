@@ -1,0 +1,98 @@
+[
+  {
+    "id": "e_commerce",
+    "name": "E-Commerce App",
+    "tagline": "Full Functional E-Commerce Mobile Application",
+    "techStack": ["Flutter", "Dart", "Provider", "REST API"],
+    "features": [
+      "Product list browsing & details",
+      "Shopping cart & checkout workflow",
+      "User authentication & login system",
+      "REST API integration with real-time data"
+    ],
+    "github": "https://github.com/Sifat221/e_commerce",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  },
+  {
+    "id": "task_manager",
+    "name": "Task Manager",
+    "tagline": "Productivity & Task Management App with GetX",
+    "techStack": ["Flutter", "Dart", "GetX", "Animations"],
+    "features": [
+      "Clean & modern task management UI",
+      "Add, edit, delete, and mark tasks completed",
+      "Task filtering: Today, Upcoming, Completed",
+      "Responsive layout & smooth micro-animations"
+    ],
+    "github": "https://github.com/Sifat221/task_manager_with_getx_impl",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  },
+  {
+    "id": "medbridge_telemedicine",
+    "name": "Telemedicine App (MedBridge)",
+    "tagline": "Health Utility App & BMI Calculator Platform",
+    "techStack": ["Flutter", "Dart", "GetX", "Clean Architecture", "REST API"],
+    "features": [
+      "Telemedicine portal for patients, doctors, and health workers",
+      "Secure authentication & appointment booking",
+      "Digital prescriptions & electronic medical records",
+      "Real-time chat & video consultation UI",
+      "BMI calculator & doctor search"
+    ],
+    "github": "https://github.com/Sifat221/medbridge_telemedicine",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  },
+  {
+    "id": "virtual_care",
+    "name": "Virtual Care",
+    "tagline": "Healthcare Mobile Application",
+    "techStack": ["Flutter", "Dart", "REST API"],
+    "features": [
+      "Doctor search & appointment booking",
+      "REST API integration with live backend",
+      "Responsive Flutter UI design",
+      "Patient dashboard management"
+    ],
+    "github": "https://github.com/Sifat221/virtual_care",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  },
+  {
+    "id": "petpassion",
+    "name": "PetPassion App",
+    "tagline": "E-Commerce App for Pet Lovers",
+    "techStack": ["Android Studio", "Java", "Firebase"],
+    "features": [
+      "Product browsing & pet care inventory",
+      "Cart management & profile settings",
+      "Secure user authentication"
+    ],
+    "github": "https://github.com/Sifat221",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  },
+  {
+    "id": "house_rental",
+    "name": "House Rental App",
+    "tagline": "Property & Rental Management Platform",
+    "techStack": ["Flutter", "Dart", "REST API", "Firebase"],
+    "features": [
+      "Manage sales, products, stock, and due payments",
+      "Real-time notifications & sales tracking",
+      "Data visualization dashboards"
+    ],
+    "github": "https://github.com/Sifat221",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  },
+  {
+    "id": "shop_management",
+    "name": "Shop Management App",
+    "tagline": "Business Inventory & Sales App",
+    "techStack": ["Flutter", "Dart", "REST API", "Firebase"],
+    "features": [
+      "Manage sales, products, stock, and due payments",
+      "Real-time notifications & sales analytics",
+      "Team collaboration workflow"
+    ],
+    "github": "https://github.com/Sifat221",
+    "demo": "https://sifat221.github.io/SifatKhan-portfolio/"
+  }
+]
