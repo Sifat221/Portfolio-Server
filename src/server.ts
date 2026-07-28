@@ -24,6 +24,7 @@ import achievementsRoutes from './routes/achievementsRoutes';
 import testimonialsRoutes from './routes/testimonialsRoutes';
 import contactRoutes from './routes/contactRoutes';
 import mediaRoutes from './routes/mediaRoutes';
+import authRoutes from './routes/authRoutes';
 
 const app = express();
 const PORT: number = parseInt(process.env.PORT || '5000', 10);
@@ -60,6 +61,7 @@ app.get('/api/health', (req: Request, res: Response) => {
 });
 
 // API Routes — Dynamic CRUD Endpoints
+app.use('/api/auth', authRoutes);
 app.use('/api/personal', personalRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/skills', skillsRoutes);

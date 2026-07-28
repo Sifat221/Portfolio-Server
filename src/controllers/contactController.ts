@@ -1,45 +1,24 @@
 import { Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
-import prisma from '../config/prisma';
+import catchAsync from '../shared/catchAsync';
+import sendResponse from '../shared/sendResponse';
+import { saveContactMessage, fetchAllContactMessages } from '../services/contactService';
 
-export const submitContactForm = asyncHandler(async (req: Request, res: Response) => {
-  const { name, email, subject, message } = req.body;
-
-  if (!name || !email || !message) {
-    res.status(400);
-    throw new Error('Name, email, and message are required fields');
-  }
-
-  let savedMessage: any = null;
-
-  try {
-    savedMessage = await prisma.contactMessage.create({
-      data: {
-        name,
-        email,
-        subject: subject || 'Portfolio Contact Inquiry',
-        message,
-      },
-    });
-  } catch (error: any) {
-    console.warn('[Contact Controller] DB Save Warning:', error.message);
-    savedMessage = { id: `mock-${Date.now()}`, name, email, subject, message, createdAt: new Date() };
-  }
-
-  res.status(201).json({
+export const submitContactForm = catchAsync(async (req: Request, res: Response) => {
+  const savedMessage = await saveContactMessage(req.body);
+  sendResponse(res, {
+    statusCode: 201,
     success: true,
     message: 'Thank you for reaching out! Your message has been received.',
     data: savedMessage,
   });
 });
 
-export const getContactMessages = asyncHandler(async (req: Request, res: Response) => {
-  try {
-    const messages = await prisma.contactMessage.findMany({
-      orderBy: { createdAt: 'desc' },
-    });
-    res.status(200).json({ success: true, count: messages.length, data: messages });
-  } catch (error) {
-    res.status(200).json({ success: true, count: 0, data: [] });
-  }
+export const getContactMessages = catchAsync(async (req: Request, res: Response) => {
+  const result = await fetchAllContactMessages();
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    count: result.count,
+    data: result.data,
+  });
 });

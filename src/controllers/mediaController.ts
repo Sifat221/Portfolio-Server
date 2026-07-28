@@ -1,59 +1,110 @@
 import { Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
-import { cloudinary } from '../config/cloudinary';
-import prisma from '../config/prisma';
+import catchAsync from '../shared/catchAsync';
+import sendResponse from '../shared/sendResponse';
+import {
+  uploadMediaAsset,
+  uploadMultipleMediaAssets,
+  getAllMediaAssets,
+  getMediaAssetById,
+  updateMediaAsset,
+  deleteMediaAsset,
+  deleteMultipleMediaAssets,
+} from '../services/mediaService';
 
-export const uploadMedia = asyncHandler(async (req: Request, res: Response) => {
-  if (!req.file) {
-    res.status(400);
-    throw new Error('No image file provided for upload');
-  }
-
-  const { path: url, filename: publicId, size } = req.file;
-  const assetType = req.body.assetType || 'general';
-
-  let savedAsset: any = null;
-  try {
-    savedAsset = await prisma.mediaAsset.create({
-      data: {
-        url,
-        publicId,
-        assetType,
-        size,
-      },
-    });
-  } catch (error) {
-    savedAsset = { url, publicId, assetType, size };
-  }
-
-  res.status(201).json({
+// @desc    Upload a single media file (photo/video)
+// @route   POST /api/media/upload
+// @access  Private / Admin
+export const uploadMedia = catchAsync(async (req: Request, res: Response) => {
+  const savedAsset = await uploadMediaAsset(req.file, req.body.assetType);
+  sendResponse(res, {
+    statusCode: 201,
     success: true,
-    message: 'Photo uploaded successfully to Cloudinary',
+    message: 'Media uploaded successfully to Cloudinary',
     data: savedAsset,
   });
 });
 
-export const deleteMedia = asyncHandler(async (req: Request, res: Response) => {
-  const publicId = req.params.publicId || (req.params as any)[0] || (req.query.publicId as string);
-
-  if (!publicId) {
-    res.status(400);
-    throw new Error('publicId parameter is required for media deletion');
-  }
-
-  const decodedPublicId = decodeURIComponent(publicId);
-
-  const result = await cloudinary.uploader.destroy(decodedPublicId);
-
-  try {
-    await prisma.mediaAsset.delete({ where: { publicId: decodedPublicId } });
-  } catch (error) {
-    // Ignore if not in DB
-  }
-
-  res.status(200).json({
+// @desc    Upload multiple media files in bulk (photos/videos for achievements, certificates, etc.)
+// @route   POST /api/media/upload-multiple
+// @access  Private / Admin
+export const uploadMultipleMedia = catchAsync(async (req: Request, res: Response) => {
+  const files = req.files as Express.Multer.File[];
+  const savedAssets = await uploadMultipleMediaAssets(files, req.body.assetType);
+  sendResponse(res, {
+    statusCode: 201,
     success: true,
-    message: 'Photo deleted successfully from Cloudinary',
-    cloudinaryResult: result,
+    message: `${savedAssets.length} media files uploaded successfully to Cloudinary`,
+    count: savedAssets.length,
+    data: savedAssets,
+  });
+});
+
+// @desc    Get all uploaded media assets (optional filter: ?assetType=achievement)
+// @route   GET /api/media
+// @access  Public
+export const getAllMedia = catchAsync(async (req: Request, res: Response) => {
+  const assetType = req.query.assetType as string | undefined;
+  const result = await getAllMediaAssets(assetType);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    count: result.count,
+    data: result.data,
+  });
+});
+
+// @desc    Get single media asset by ID or publicId
+// @route   GET /api/media/:id
+// @access  Public
+export const getMediaById = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const asset = await getMediaAssetById(id);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    data: asset,
+  });
+});
+
+// @desc    Update media asset metadata or replace photo/video asset
+// @route   PUT /api/media/:id
+// @access  Private / Admin
+export const updateMedia = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const updatedAsset = await updateMediaAsset(id, req.body, req.file);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Media asset updated successfully',
+    data: updatedAsset,
+  });
+});
+
+// @desc    Delete single media asset from Cloudinary & DB
+// @route   DELETE /api/media/:publicId
+// @access  Private / Admin
+export const deleteMedia = catchAsync(async (req: Request, res: Response) => {
+  const publicId = req.params.publicId || (req.params as any)[0] || (req.query.publicId as string);
+  const result = await deleteMediaAsset(publicId);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Media asset deleted successfully from Cloudinary',
+    cloudinaryResult: result.cloudinaryResult,
+  });
+});
+
+// @desc    Delete multiple media assets in bulk
+// @route   POST /api/media/delete-multiple
+// @access  Private / Admin
+export const deleteMultipleMedia = catchAsync(async (req: Request, res: Response) => {
+  const publicIds = req.body.publicIds;
+  const results = await deleteMultipleMediaAssets(publicIds);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Bulk media deletion processed',
+    count: results.length,
+    data: results,
   });
 });

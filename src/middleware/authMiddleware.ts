@@ -1,12 +1,13 @@
-import { Request, Response, NextFunction } from 'express';
-import asyncHandler from 'express-async-handler';
+import { Response, NextFunction } from 'express';
+import catchAsync from '../shared/catchAsync';
 import admin from '../config/firebase';
 import { AuthenticatedRequest, UserRole } from '../types';
+import ApiError from '../errors/ApiError';
 
 /**
- * @desc    Protect routes - verifies Bearer token (Firebase Auth or Dev Token)
+ * @desc Protect routes - verifies Bearer token (Firebase Auth or Dev/Admin Token)
  */
-export const protect = asyncHandler(async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+export const protect = catchAsync(async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
   let token: string | undefined;
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -14,8 +15,7 @@ export const protect = asyncHandler(async (req: AuthenticatedRequest, res: Respo
   }
 
   if (!token) {
-    res.status(401);
-    throw new Error('Not authorized, access token missing');
+    throw new ApiError(401, 'Not authorized: Access token missing');
   }
 
   try {
@@ -24,33 +24,37 @@ export const protect = asyncHandler(async (req: AuthenticatedRequest, res: Respo
       const role: UserRole = decodedToken.role || (decodedToken.admin ? 'ADMIN' : 'VIEWER');
       req.user = {
         uid: decodedToken.uid,
-        email: decodedToken.email,
+        email: decodedToken.email || 'admin@sifatkhan.com',
+        name: decodedToken.name || 'Sifat Khan',
         role: role,
       };
     } else {
       const requestedRole = ((req.headers['x-role'] as string) || 'ADMIN').toUpperCase();
       req.user = {
-        uid: 'dev-user-id',
+        uid: 'admin-user-id',
         email: 'sifatkhanjoy996@gmail.com',
+        name: 'Sifat Khan (Admin)',
         role: requestedRole === 'ADMIN' ? 'ADMIN' : 'VIEWER',
       };
     }
 
     next();
   } catch (error: any) {
-    res.status(401);
-    throw new Error(`Authentication failed: ${error.message}`);
+    throw new ApiError(401, `Authentication failed: ${error.message}`);
   }
 });
 
 /**
- * @desc    Authorize specific roles (e.g. authorize('ADMIN'))
+ * @desc Authorize specific roles (e.g. authorize('ADMIN'))
  */
 export const authorize = (...roles: UserRole[]) => {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     if (!req.user || !roles.includes(req.user.role)) {
-      res.status(403);
-      throw new Error(`Forbidden: Access restricted to [${roles.join(', ')}] roles. Your role is '${req.user ? req.user.role : 'GUEST'}'.`);
+      const currentRole = req.user ? req.user.role : 'GUEST / VIEWER';
+      throw new ApiError(
+        403,
+        `Forbidden: Access restricted to [${roles.join(', ')}] roles. Your current role '${currentRole}' does not have dashboard/logout management permissions.`
+      );
     }
     next();
   };

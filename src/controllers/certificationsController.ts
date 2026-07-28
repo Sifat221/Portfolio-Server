@@ -1,35 +1,33 @@
 import { Request, Response } from 'express';
-import asyncHandler from 'express-async-handler';
-import prisma from '../config/prisma';
-import certsData from '../../data/certifications.json';
+import catchAsync from '../shared/catchAsync';
+import sendResponse from '../shared/sendResponse';
+import { fetchAllCertifications, createNewCertification, deleteExistingCertification } from '../services/certificationsService';
 
-export const getCertifications = asyncHandler(async (req: Request, res: Response) => {
-  try {
-    const certs = await prisma.certification.findMany({ orderBy: { createdAt: 'desc' } });
-    if (certs && certs.length > 0) {
-      res.status(200).json({ success: true, count: certs.length, data: certs });
-      return;
-    }
-  } catch (error) {
-    // Fallback search
-  }
-
-  res.status(200).json({ success: true, isFallback: true, data: certsData });
-});
-
-export const createCertification = asyncHandler(async (req: Request, res: Response) => {
-  const { title, issuer, issueDate, credentialUrl } = req.body;
-  if (!title || !issuer) {
-    res.status(400);
-    throw new Error('Title and issuer are required');
-  }
-  const cert = await prisma.certification.create({
-    data: { title, issuer, issueDate, credentialUrl },
+export const getCertifications = catchAsync(async (req: Request, res: Response) => {
+  const result = await fetchAllCertifications();
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    ...(result.isFallback ? { isFallback: true } : {}),
+    count: result.count,
+    data: result.data,
   });
-  res.status(201).json({ success: true, data: cert });
 });
 
-export const deleteCertification = asyncHandler(async (req: Request, res: Response) => {
-  await prisma.certification.delete({ where: { id: req.params.id } });
-  res.status(200).json({ success: true, message: 'Certification deleted' });
+export const createCertification = catchAsync(async (req: Request, res: Response) => {
+  const cert = await createNewCertification(req.body);
+  sendResponse(res, {
+    statusCode: 201,
+    success: true,
+    data: cert,
+  });
+});
+
+export const deleteCertification = catchAsync(async (req: Request, res: Response) => {
+  const result = await deleteExistingCertification(req.params.id);
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: result.message,
+  });
 });
