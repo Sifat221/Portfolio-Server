@@ -43,6 +43,28 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 app.use('/data', express.static(path.join(__dirname, '../data')));
 
+// Root Welcome Route
+app.get('/', (req: Request, res: Response) => {
+  res.status(200).json({
+    success: true,
+    message: '🚀 Welcome to Sifat Khan Portfolio Backend API Server. Server is live and healthy.',
+    healthCheck: '/api/health',
+    endpoints: {
+      auth: '/api/auth',
+      personal: '/api/personal',
+      projects: '/api/projects',
+      skills: '/api/skills',
+      experience: '/api/experience',
+      education: '/api/education',
+      certifications: '/api/certifications',
+      achievements: '/api/achievements',
+      testimonials: '/api/testimonials',
+      contact: '/api/contact',
+      media: '/api/media',
+    },
+  });
+});
+
 // Root Health Check Route
 app.get('/api/health', (req: Request, res: Response) => {
   res.status(200).json({
