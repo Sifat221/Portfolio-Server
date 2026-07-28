@@ -151,6 +151,10 @@ const startServer = (port: number) => {
   return server;
 };
 
-const serverInstance = startServer(PORT);
+let serverInstance: any = null;
+if (!process.env.VERCEL) {
+  serverInstance = startServer(PORT);
+}
 
-export default serverInstance;
+export { app, serverInstance };
+export default app;
