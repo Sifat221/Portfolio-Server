@@ -1,7 +1,7 @@
 services:
   - type: web
     name: sifat-portfolio-backend
-    env: node
+    runtime: node
     region: singapore
     plan: free
     buildCommand: npm install && npx prisma generate && npm run build
@@ -9,19 +9,23 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: CORS_ORIGIN
-        value: "*"
       - key: PORT
         value: 10000
+      - key: CORS_ORIGIN
+        value: "*"
       - key: DATABASE_URL
-        sync: false
+        value: postgresql://neondb_owner:npg_iNYa0kAjnX4y@ep-cool-recipe-aya51492.c-5.us-east-2.aws.neon.tech/neondb?sslmode=require
       - key: CLOUDINARY_CLOUD_NAME
-        sync: false
+        value: dru3wnly
       - key: CLOUDINARY_API_KEY
-        sync: false
+        value: "834864448471825"
       - key: CLOUDINARY_API_SECRET
-        sync: false
-      - key: FIREBASE_PROJECT_ID
-        sync: false
+        value: qLYVI5OXK0BktWSKLughpIyen4A
       - key: FIREBASE_API_KEY
-        sync: false
+        value: AIzaSyClEYFnpPHhNLK_V3P-dZzZwSWMIpWMmZk
+      - key: FIREBASE_AUTH_DOMAIN
+        value: sifat-khan-joy.firebaseapp.com
+      - key: FIREBASE_PROJECT_ID
+        value: sifat-khan-joy
+      - key: FIREBASE_STORAGE_BUCKET
+        value: sifat-khan-joy.firebasestorage.app
