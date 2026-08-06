@@ -115,3 +115,38 @@ model MediaAsset {
   size      Int?
   createdAt DateTime @default(now())
 }
+
+model PersonalProfile {
+  id                 String   @id @default(uuid())
+  name               String
+  title              String
+  bio                String
+  location           String?
+  availability       String?
+  email              String?
+  phone              String?
+  resumeUrl          String?
+  github             String?
+  portfolio          String?
+  profilePhoto       String?
+  bannerPhoto        String?
+  linkedin           String?
+  facebook           String?
+  cloudinaryPublicId String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model UniversityGallery {
+  id                 String   @id @default(uuid())
+  title              String
+  description        String?
+  imageUrl           String
+  cloudinaryPublicId String?
+  institution        String?  // e.g. "Daffodil International University"
+  category           String?  // e.g. "Campus", "Events", "Graduation", "Memories"
+  date               String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+

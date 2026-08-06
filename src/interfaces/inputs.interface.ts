@@ -79,3 +79,41 @@ export interface LoginInput {
   password?: string;
   role?: string;
 }
+
+export interface UpdatePersonalProfileInput {
+  name?: string;
+  title?: string;
+  bio?: string;
+  location?: string;
+  availability?: string;
+  email?: string;
+  phone?: string;
+  resumeUrl?: string;
+  github?: string;
+  portfolio?: string;
+  profilePhoto?: string;
+  bannerPhoto?: string;
+  linkedin?: string;
+  facebook?: string;
+}
+
+export interface CreateUniversityGalleryInput {
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  cloudinaryPublicId?: string;
+  institution?: string;
+  category?: string;
+  date?: string;
+}
+
+export interface UpdateUniversityGalleryInput {
+  title?: string;
+  description?: string;
+  imageUrl?: string;
+  cloudinaryPublicId?: string;
+  institution?: string;
+  category?: string;
+  date?: string;
+}
+

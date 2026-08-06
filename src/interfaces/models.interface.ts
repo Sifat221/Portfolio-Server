@@ -1,14 +1,22 @@
 export interface IPersonalProfile {
+  id?: string;
   name: string;
   title: string;
   bio: string;
-  location: string;
-  availability: string;
-  email: string;
-  phone: string;
-  resumeUrl: string;
-  github: string;
-  portfolio: string;
+  location?: string | null;
+  availability?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  resumeUrl?: string | null;
+  github?: string | null;
+  portfolio?: string | null;
+  profilePhoto?: string | null;
+  bannerPhoto?: string | null;
+  linkedin?: string | null;
+  facebook?: string | null;
+  cloudinaryPublicId?: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IProject {
@@ -103,4 +111,17 @@ export interface IMediaAsset {
   filename?: string | null;
   size?: number | null;
   createdAt?: Date;
+}
+
+export interface IUniversityGallery {
+  id?: string;
+  title: string;
+  description?: string | null;
+  imageUrl: string;
+  cloudinaryPublicId?: string | null;
+  institution?: string | null;
+  category?: string | null;
+  date?: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

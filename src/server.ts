@@ -25,6 +25,7 @@ import testimonialsRoutes from './routes/testimonialsRoutes';
 import contactRoutes from './routes/contactRoutes';
 import mediaRoutes from './routes/mediaRoutes';
 import authRoutes from './routes/authRoutes';
+import galleryRoutes from './routes/galleryRoutes';
 
 const app = express();
 const PORT: number = parseInt(process.env.PORT || '5000', 10);
@@ -56,6 +57,8 @@ app.get('/', (req: Request, res: Response) => {
       skills: '/api/skills',
       experience: '/api/experience',
       education: '/api/education',
+      educationGallery: '/api/education/gallery',
+      gallery: '/api/gallery',
       certifications: '/api/certifications',
       achievements: '/api/achievements',
       testimonials: '/api/testimonials',
@@ -89,11 +92,13 @@ app.use('/api/projects', projectsRoutes);
 app.use('/api/skills', skillsRoutes);
 app.use('/api/experience', experienceRoutes);
 app.use('/api/education', educationRoutes);
+app.use('/api/gallery', galleryRoutes);
 app.use('/api/certifications', certificationsRoutes);
 app.use('/api/achievements', achievementsRoutes);
 app.use('/api/testimonials', testimonialsRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/media', mediaRoutes);
+
 
 // 404 Not Found Handler for undefined routes
 app.use(notFound);

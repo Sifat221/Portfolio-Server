@@ -9,6 +9,8 @@ import educationData from '../data/education.json';
 import certificationsData from '../data/certifications.json';
 import achievementsData from '../data/achievements.json';
 import testimonialsData from '../data/testimonials.json';
+import personalData from '../data/personal.json';
+
 
 async function main() {
   console.log('🌱 Seeding database with CV data (TypeScript)...\n');
@@ -122,7 +124,33 @@ async function main() {
   }
   console.log(`   ✅ ${testimonialsData.length} testimonials seeded.\n`);
 
+  // ── Seed Personal Profile ──
+  console.log('👤 Seeding Personal Profile...');
+  const existingProfile = await prisma.personalProfile.findFirst();
+  if (!existingProfile) {
+    await prisma.personalProfile.create({
+      data: {
+        name: personalData.name,
+        title: personalData.title,
+        bio: personalData.bio,
+        location: personalData.location,
+        availability: personalData.availability,
+        email: personalData.email,
+        phone: personalData.phone,
+        resumeUrl: personalData.resumeUrl,
+        github: personalData.github,
+        portfolio: personalData.portfolio,
+        profilePhoto: personalData.profilePhoto,
+        bannerPhoto: personalData.bannerPhoto,
+        linkedin: personalData.linkedin,
+        facebook: personalData.facebook,
+      },
+    });
+    console.log('   ✅ Personal Profile seeded.\n');
+  }
+
   console.log('✨ TypeScript Database seeding complete!');
+
 }
 
 main()
