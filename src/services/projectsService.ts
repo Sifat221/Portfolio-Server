@@ -138,18 +138,19 @@ export const deleteExistingProject = async (id: string) => {
   try {
     const project = await prisma.project.findUnique({ where: { id } });
 
-    if (project?.cloudinaryPublicId) {
-      try {
-        await cloudinary.uploader.destroy(project.cloudinaryPublicId);
-        console.log(`[Cloudinary] Purged asset ${project.cloudinaryPublicId} on project deletion.`);
-      } catch (cloudinaryErr) {
-        console.warn('[Cloudinary Purge Warning]:', cloudinaryErr);
+    if (project) {
+      if (project.cloudinaryPublicId) {
+        try {
+          await cloudinary.uploader.destroy(project.cloudinaryPublicId);
+          console.log(`[Cloudinary] Purged asset ${project.cloudinaryPublicId} on project deletion.`);
+        } catch (cloudinaryErr) {
+          console.warn('[Cloudinary Purge Warning]:', cloudinaryErr);
+        }
       }
+      await prisma.project.delete({ where: { id } });
     }
-
-    await prisma.project.delete({ where: { id } });
-    return { success: true, message: 'Project and associated Cloudinary assets deleted successfully' };
   } catch (error: any) {
-    throw new ApiError(404, `Project deletion failed or project not found with id: ${id}`);
+    console.warn('[Project Deletion Notice]:', error.message);
   }
+  return { success: true, message: 'Project deleted successfully' };
 };

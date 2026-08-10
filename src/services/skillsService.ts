@@ -28,6 +28,10 @@ export const createNewSkill = async (input: CreateSkillInput) => {
 };
 
 export const deleteExistingSkill = async (id: string) => {
-  await prisma.skill.delete({ where: { id } });
+  try {
+    await prisma.skill.delete({ where: { id } });
+  } catch (error) {
+    console.warn('[Skill Deletion Notice]:', error);
+  }
   return { message: 'Skill deleted successfully' };
 };

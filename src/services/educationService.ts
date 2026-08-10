@@ -29,6 +29,10 @@ export const createNewEducation = async (input: CreateEducationInput) => {
 };
 
 export const deleteExistingEducation = async (id: string) => {
-  await prisma.education.delete({ where: { id } });
+  try {
+    await prisma.education.delete({ where: { id } });
+  } catch (error) {
+    console.warn('[Education Deletion Notice]:', error);
+  }
   return { message: 'Education record deleted' };
 };

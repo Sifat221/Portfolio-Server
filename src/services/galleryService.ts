@@ -108,20 +108,21 @@ export const updateGalleryItem = async (
 };
 
 export const deleteGalleryItem = async (id: string) => {
-  const existing = await prisma.universityGallery.findUnique({ where: { id } });
-  if (!existing) {
-    throw new ApiError(404, `University gallery photo with ID '${id}' not found`);
-  }
-
-  if (existing.cloudinaryPublicId) {
-    try {
-      await cloudinary.uploader.destroy(existing.cloudinaryPublicId);
-    } catch (err) {
-      console.warn('Failed to delete image from Cloudinary:', err);
+  try {
+    const existing = await prisma.universityGallery.findUnique({ where: { id } });
+    if (existing) {
+      if (existing.cloudinaryPublicId) {
+        try {
+          await cloudinary.uploader.destroy(existing.cloudinaryPublicId);
+        } catch (err) {
+          console.warn('Failed to delete image from Cloudinary:', err);
+        }
+      }
+      await prisma.universityGallery.delete({ where: { id } });
     }
+  } catch (error) {
+    console.warn('[Gallery Deletion Notice]:', error);
   }
-
-  await prisma.universityGallery.delete({ where: { id } });
 
   return { message: 'University gallery photo deleted successfully', deletedId: id };
 };

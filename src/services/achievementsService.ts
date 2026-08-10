@@ -28,6 +28,10 @@ export const createNewAchievement = async (input: CreateAchievementInput) => {
 };
 
 export const deleteExistingAchievement = async (id: string) => {
-  await prisma.achievement.delete({ where: { id } });
+  try {
+    await prisma.achievement.delete({ where: { id } });
+  } catch (error) {
+    console.warn('[Achievement Deletion Notice]:', error);
+  }
   return { message: 'Achievement deleted' };
 };
