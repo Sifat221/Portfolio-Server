@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import catchAsync from '../shared/catchAsync';
 import sendResponse from '../shared/sendResponse';
-import { fetchAllCertifications, createNewCertification, deleteExistingCertification } from '../services/certificationsService';
+import { fetchAllCertifications, createNewCertification, updateExistingCertification, deleteExistingCertification } from '../services/certificationsService';
 
 export const getCertifications = catchAsync(async (req: Request, res: Response) => {
   const result = await fetchAllCertifications();
@@ -18,6 +18,15 @@ export const createCertification = catchAsync(async (req: Request, res: Response
   const cert = await createNewCertification(req.body);
   sendResponse(res, {
     statusCode: 201,
+    success: true,
+    data: cert,
+  });
+});
+
+export const updateCertification = catchAsync(async (req: Request, res: Response) => {
+  const cert = await updateExistingCertification(req.params.id, req.body);
+  sendResponse(res, {
+    statusCode: 200,
     success: true,
     data: cert,
   });

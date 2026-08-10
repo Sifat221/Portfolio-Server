@@ -41,6 +41,7 @@ export interface CreateCertificationInput {
   issuer: string;
   issueDate?: string;
   credentialUrl?: string;
+  imageUrl?: string;
 }
 
 export interface CreateAchievementInput {
