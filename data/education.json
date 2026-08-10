@@ -1,24 +1,21 @@
 [
   {
-    "degree": "B.Sc. in Computer Science and Engineering",
+    "id": "edu_1",
+    "degree": "Bachelor of Science in Computer Science & Engineering",
     "institution": "Daffodil International University",
-    "timeline": "01/2022 - 12/2025",
+    "location": "Dhaka, Bangladesh",
+    "timeline": "2022 – 2026",
+    "description": "Specialized in Mobile Application Engineering (Flutter), Clean Architecture, Distributed Systems, Artificial Intelligence, and Machine Learning algorithms. Maintained consistent academic excellence while leading student software engineering initiatives.",
+    "imageUrl": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200",
     "relevantCourses": [
       "Object Oriented Programming (Java/Dart)",
       "Data Structures & Algorithms",
       "Software Engineering & Clean Architecture",
-      "Database Systems",
-      "Mobile Application Development (Flutter)"
-    ],
-    "projects": ["MedBridge Telemedicine App", "Shop Management App", "Virtual Care"],
-    "activities": ["Mobile App Development Projects", "Software Engineering Labs"]
-  },
-  {
-    "degree": "Higher Secondary Certification (HSC)",
-    "institution": "Ibrahim Khan Govt. College",
-    "timeline": "Completed",
-    "relevantCourses": ["Science Stream", "Physics", "Chemistry", "Higher Mathematics"],
-    "projects": [],
-    "activities": []
+      "Database Management Systems",
+      "Mobile Application Development (Flutter)",
+      "AI & Machine Learning",
+      "Operating Systems",
+      "Web Engineering"
+    ]
   }
 ]
