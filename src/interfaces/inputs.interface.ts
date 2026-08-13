@@ -6,6 +6,8 @@ export interface CreateProjectInput {
   features?: string | string[];
   githubUrl?: string;
   demoUrl?: string;
+  androidUrl?: string;
+  iosUrl?: string;
   imageUrl?: string;
   cloudinaryPublicId?: string;
   isFeatured?: boolean | string;
