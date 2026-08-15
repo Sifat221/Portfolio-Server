@@ -30,6 +30,8 @@ export interface IProject {
   githubLabel?: string | null;
   demoUrl?: string | null;
   demoLabel?: string | null;
+  androidUrl?: string | null;
+  iosUrl?: string | null;
   imageUrl?: string | null;
   cloudinaryPublicId?: string | null;
   isFeatured?: boolean;

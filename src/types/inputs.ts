@@ -8,6 +8,8 @@ export interface CreateProjectInput {
   githubLabel?: string;
   demoUrl?: string;
   demoLabel?: string;
+  androidUrl?: string;
+  iosUrl?: string;
   imageUrl?: string;
   cloudinaryPublicId?: string;
   isFeatured?: boolean | string;

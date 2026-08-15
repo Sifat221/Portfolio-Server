@@ -51,7 +51,7 @@ export const fetchProjectById = async (id: string) => {
 };
 
 export const createNewProject = async (input: any, file?: Express.Multer.File) => {
-  const { title, tagline, description, techStack, features, githubUrl, githubLabel, demoUrl, demoLabel, imageUrl, cloudinaryPublicId, isFeatured } = input;
+  const { title, tagline, description, techStack, features, githubUrl, githubLabel, demoUrl, demoLabel, androidUrl, iosUrl, imageUrl, cloudinaryPublicId, isFeatured } = input;
 
   if (!title || !description) {
     throw new ApiError(400, 'Title and description are required fields');
@@ -84,6 +84,8 @@ export const createNewProject = async (input: any, file?: Express.Multer.File) =
       githubLabel: githubLabel || null,
       demoUrl: demoUrl || null,
       demoLabel: demoLabel || null,
+      androidUrl: androidUrl || null,
+      iosUrl: iosUrl || null,
       imageUrl: finalImageUrl,
       cloudinaryPublicId: finalPublicId,
       isFeatured: isFeatured === true || isFeatured === 'true',

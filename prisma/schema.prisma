@@ -33,6 +33,8 @@ model Project {
   githubLabel        String?
   demoUrl            String?
   demoLabel          String?
+  androidUrl         String?
+  iosUrl             String?
   imageUrl           String?
   cloudinaryPublicId String?
   isFeatured         Boolean  @default(false)
