@@ -50,8 +50,8 @@ export const fetchProjectById = async (id: string) => {
   throw new ApiError(404, `Project not found with id: ${id}`);
 };
 
-export const createNewProject = async (input: CreateProjectInput, file?: Express.Multer.File) => {
-  const { title, tagline, description, techStack, features, githubUrl, demoUrl, imageUrl, cloudinaryPublicId, isFeatured } = input;
+export const createNewProject = async (input: any, file?: Express.Multer.File) => {
+  const { title, tagline, description, techStack, features, githubUrl, githubLabel, demoUrl, demoLabel, imageUrl, cloudinaryPublicId, isFeatured } = input;
 
   if (!title || !description) {
     throw new ApiError(400, 'Title and description are required fields');
@@ -81,7 +81,9 @@ export const createNewProject = async (input: CreateProjectInput, file?: Express
       techStack: parsedTechStack,
       features: parsedFeatures,
       githubUrl: githubUrl || null,
+      githubLabel: githubLabel || null,
       demoUrl: demoUrl || null,
+      demoLabel: demoLabel || null,
       imageUrl: finalImageUrl,
       cloudinaryPublicId: finalPublicId,
       isFeatured: isFeatured === true || isFeatured === 'true',

@@ -27,7 +27,9 @@ export interface IProject {
   techStack?: string[];
   features?: string[];
   githubUrl?: string | null;
+  githubLabel?: string | null;
   demoUrl?: string | null;
+  demoLabel?: string | null;
   imageUrl?: string | null;
   cloudinaryPublicId?: string | null;
   isFeatured?: boolean;

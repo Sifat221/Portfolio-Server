@@ -5,7 +5,9 @@ export interface CreateProjectInput {
   techStack?: string | string[];
   features?: string | string[];
   githubUrl?: string;
+  githubLabel?: string;
   demoUrl?: string;
+  demoLabel?: string;
   imageUrl?: string;
   cloudinaryPublicId?: string;
   isFeatured?: boolean | string;

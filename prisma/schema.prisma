@@ -30,7 +30,9 @@ model Project {
   techStack          String[]
   features           String[]
   githubUrl          String?
+  githubLabel        String?
   demoUrl            String?
+  demoLabel          String?
   imageUrl           String?
   cloudinaryPublicId String?
   isFeatured         Boolean  @default(false)
